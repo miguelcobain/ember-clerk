@@ -1,0 +1,23 @@
+<form {{on 'submit' this.authenticate}}>
+  <Input
+    aria-label='E-mail'
+    @type='text'
+    placeholder='E-mail'
+    @value={{this.email}}
+  />
+
+  <Input
+    aria-label='Password'
+    @type='password'
+    placeholder='Password'
+    @value={{this.password}}
+  />
+
+  <button type='submit'>
+    Login
+  </button>
+
+  {{#each this.errors as |error|}}
+    <div>{{error.longMessage}}</div>
+  {{/each}}
+</form>
