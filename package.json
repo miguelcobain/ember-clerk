@@ -1,13 +1,13 @@
 {
   "name": "ember-simple-auth-clerk",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Integrates Clerk with ember-simple-auth.",
   "keywords": [
     "ember-addon"
   ],
-  "repository": "",
+  "repository": "https://github.com/miguelcobain/ember-simple-auth-clerk",
   "license": "MIT",
-  "author": "",
+  "author": "Miguel Andrade <jmandrade0@gmail.com>",
   "directories": {
     "doc": "doc",
     "test": "tests"
