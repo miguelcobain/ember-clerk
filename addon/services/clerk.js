@@ -28,6 +28,13 @@ export default class ClerkService extends Service {
       return this.clerk;
     }
 
+    if (isPresent(this.loadPromise)) {
+      // currently initializing clerk
+      // wait for it to finish and return
+      await this.loadPromise;
+      return this.clerk;
+    }
+
     let environment = getOwner(this).resolveRegistration('config:environment');
     let frontendApi = environment?.clerk?.frontendApi;
 
@@ -37,8 +44,11 @@ export default class ClerkService extends Service {
     );
 
     // ClerkJS currently *requires* existing in window.Clerk global
-    this.clerk = window.Clerk = new Clerk(frontendApi);
-    await this.clerk.load();
+    let clerk = new Clerk(frontendApi);
+    this.loadPromise = await this.clerk.load();
+
+    delete this.loadPromise;
+    this.clerk = window.Clerk = clerk;
 
     return this.clerk;
   }
