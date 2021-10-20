@@ -1,6 +1,6 @@
 {
   "name": "ember-simple-auth-clerk",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Integrates Clerk with ember-simple-auth.",
   "keywords": [
     "ember-addon"
