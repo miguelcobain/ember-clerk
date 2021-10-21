@@ -13,23 +13,47 @@ export default class ClerkService extends Service {
    */
   clerk = null;
 
+  /**
+   * Holds the last attempted transition, if any.
+   * This transition will be retried upon next
+   * successful authentication.
+   */
   attemptedTransition = null;
 
   /**
    * Utility getter to return current session
    */
   get session() {
-    assert(
-      `You tried to access the session without initializing Clerk first`,
-      isPresent(this.clerk)
-    );
-    return this.clerk.session;
+    return this.clerk?.session;
   }
 
+  /**
+   * Utility getter to return current user
+   */
+  get user() {
+    return this.clerk?.user;
+  }
+
+  /**
+   * Utility getter to return current client
+   */
+  get client() {
+    return this.clerk?.client;
+  }
+
+  /**
+   * Utility getter to return current client
+   */
   get isAuthenticated() {
-    return isPresent(this.clerk?.session);
+    return isPresent(this.session);
   }
 
+  /**
+   * Initializes ClerkJS. This method is safe to call multiple
+   * times, since it will not do the initialization multiple times.
+   * The first call will do the work, the subsequent calls will hold
+   * until the initialization is completed and only then they will resolve.
+   */
   async initClerk() {
     if (isPresent(this.clerk)) {
       // already initialized
