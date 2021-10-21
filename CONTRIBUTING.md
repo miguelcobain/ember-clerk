@@ -3,7 +3,7 @@
 ## Installation
 
 * `git clone <repository-url>`
-* `cd ember-simple-auth-clerk`
+* `cd ember-clerk`
 * `npm install`
 
 ## Linting

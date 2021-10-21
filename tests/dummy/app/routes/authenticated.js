@@ -2,9 +2,9 @@ import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 
 export default class AuthenticatedRoute extends Route {
-  @service session;
+  @service clerk;
 
-  beforeModel(transition) {
-    this.session.requireAuthentication(transition, 'login');
+  async beforeModel(transition) {
+    await this.clerk.requireAuthentication(transition, 'login');
   }
 }

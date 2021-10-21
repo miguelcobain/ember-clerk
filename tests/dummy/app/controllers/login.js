@@ -4,7 +4,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class LoginController extends Controller {
-  @service session;
+  @service clerk;
   @service router;
 
   @tracked email;
@@ -14,19 +14,15 @@ export default class LoginController extends Controller {
   @action
   async authenticate(e) {
     e.preventDefault();
-    this.emailError = this.passwordError = '';
 
     try {
-      await this.session.authenticate('authenticator:clerk', {
+      await this.clerk.signIn({
         identifier: this.email,
         password: this.password,
       });
+      this.router.transitionTo('authenticated');
     } catch (e) {
       this.errors = e.errors;
-    }
-
-    if (this.session.isAuthenticated) {
-      this.router.transitionTo('authenticated');
     }
   }
 }

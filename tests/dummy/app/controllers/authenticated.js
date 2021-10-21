@@ -3,10 +3,11 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class AuthenticatedController extends Controller {
-  @service session;
+  @service clerk;
 
   @action
-  logout() {
-    this.session.invalidate();
+  async logout() {
+    await this.clerk.signOut();
+    window.location.replace('');
   }
 }

@@ -1,1 +1,1 @@
-export { default } from 'ember-simple-auth-clerk/services/clerk';
+export { default } from 'ember-clerk/services/clerk';

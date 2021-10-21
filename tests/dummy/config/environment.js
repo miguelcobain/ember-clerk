@@ -22,7 +22,7 @@ module.exports = function (environment) {
       // when it is created
     },
     clerk: {
-      frontendApi: 'your-clerk-frontend-api-url',
+      frontendApi: 'clerk.t1vqb.llc44.lcl.dev' //'your-clerk-frontend-api-url',
     },
   };
 
