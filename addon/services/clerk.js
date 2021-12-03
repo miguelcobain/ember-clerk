@@ -75,9 +75,7 @@ export default class ClerkService extends Service {
       isPresent(frontendApi)
     );
 
-    // ClerkJS currently *requires* existing in window.Clerk global
     let clerk = new Clerk(frontendApi);
-    window.Clerk = clerk;
     this.loadPromise = await clerk.load();
 
     delete this.loadPromise;
